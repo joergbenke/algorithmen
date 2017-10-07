@@ -7,22 +7,34 @@
 #include <stdlib.h>
 #include <time.h>
 
-int insertionsort( unsigned int *array_to_sort, unsigned int n )
+int shellsort( unsigned int *array_to_sort, unsigned int n )
 {
 
     int tmp = 0;
-    
-    for ( int i = 0; i < n; i++ )
-	for ( int j = i; j > 0; j-- )
-	    if ( array_to_sort[ j ] < array_to_sort[ j - 1 ] )
-	    {
-		
-		tmp = array_to_sort[ j - 1 ];
-		array_to_sort[ j - 1 ] = array_to_sort[ j ];       
-		array_to_sort[ j ] = tmp;
+    unsigned int h = 1;
 
-	    }
+    while ( h < n / 3 )
+	h = 3 * h + 1;
+        
+    while ( h >= 1 )
+    {
+
+	for ( int i = h; i < n; i++ )
+	    for ( int j = i; j >= h && ( array_to_sort[ j ] < array_to_sort[ j - h ] ); j = j - h )
+		if ( array_to_sort[ j ] < array_to_sort[ j - h ] )
+		{
+		
+		    tmp = array_to_sort[ j - h ];
+		    array_to_sort[ j - h ] = array_to_sort[ j ];       
+		    array_to_sort[ j ] = tmp;
+
+		}
+
+	h = h / 3;
+
+    }
     
+	
     return 0;
     
 }
@@ -57,7 +69,7 @@ int main( int argc, char **argv )
     for ( int i = 0; i < len; i++ )
 	array_to_sort[ i ] = rand() % 1000;
         
-    insertionsort( array_to_sort, len );
+    shellsort( array_to_sort, len );
 
     if ( test( array_to_sort, len ) == 0 )
 	printf( "Array ist sortiert!\n") ;
