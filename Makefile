@@ -5,7 +5,8 @@ CFLAGS=-std=c99 -Wall -O3
 
 all: selectionsort insertionsort shellsort
 
-selectionsort: selectionsort.c
+selectionsort: 
+	${CC} ${CFLAGS} -c $@ $<
 	${CC} ${CFLAGS} -o $@ $<
 
 insertionsort: insertionsort.c
@@ -14,6 +15,9 @@ insertionsort: insertionsort.c
 shellsort: shellsort.c
 	${CC} ${CFLAGS} -o $@ $<
 
+*.o:*.c
+	${CC} ${CFLAGS} -o $@ $<
+	
 clean:
 	rm selectionsort insertionsort shellsort *~
 
