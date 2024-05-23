@@ -14,7 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: echo "Working directory: $GITHUB_WORKSPACE"    
+    - name: Output of workspace 
+      run: echo "Working directory: $GITHUB_WORKSPACE"    
       
     - name: make
       run: |
