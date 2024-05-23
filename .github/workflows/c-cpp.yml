@@ -17,7 +17,3 @@ jobs:
       run: |
             cd src
             make
-    - name: make install
-      run: |
-            cd src
-            make install
