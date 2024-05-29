@@ -13,13 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: fetch code 
+      uses: actions/checkout@v4
 
-    - name: Output of workspace 
-      run: |
-            echo "Working directory: $GITHUB_WORKSPACE"    
+    - name: install packages
+      uses: sudo apt-get update; sudo apt-get install gcov cppcheck
       
-    - name: make
-      run: |
-            cd src
-            make
+    - name: Output of workspace 
+      run: echo "Working directory: $GITHUB_WORKSPACE"    
+      
+    - name: make 
+      run: cd ./src; make
+
+    - name: make check
+      run: cd ./src ; STATIC=0 COV=1 make check
+
+    - name: coverage
+      run: cd ./src ; STATIC=0 COV=1 make coverage

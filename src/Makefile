@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CC=gcc
-CFLAGS=-std=c11 -Wall -Wpedantic -O2 
+CFLAGS=-std=c11 -Wall -Wpedantic -O2  
 
 all: selectionsort insertionsort shellsort
 
