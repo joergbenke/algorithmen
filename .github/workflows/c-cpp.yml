@@ -20,7 +20,8 @@ jobs:
       uses: sudo apt-get update; sudo apt-get install gcov cppcheck
       
     - name: Output of workspace 
-      run: echo "Working directory: $GITHUB_WORKSPACE"    
+      run: |
+            echo "Working directory: $GITHUB_WORKSPACE"    
       
     - name: make 
       run: cd ./src; make
